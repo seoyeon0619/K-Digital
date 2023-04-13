@@ -5,9 +5,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="Emp">
 
-<insert id="insertEmp" parameterType="EmpDto">
-	insert into emp_mng_tb (emp_id, emp_nm, eml_addr, dept_no, mbl_telno, addr, aprv_yn)
-	values (#{emp_id}, #{emp_nm}, #{eml_addr}, #{dept_no}, #{mbl_telno}, #{addr}, 'N')
+<select id="Emp_getList" parameterType="EmpDto" resultType="EmpDto">
+	select emp_id, emp_nm, dept_no, aprv_yn from emp_mng_tb
+</select>
+
+<insert id="Emp_insert" parameterType="EmpDto">
+	insert into 
+	(
+		emp_id 
+		, emp_nm 
+		, eml_addr
+		, dept_no
+		, mbl_telno
+		, addr
+		, aprv_yn
+	
+	)
+	values
+	(
+		#{emp_id}
+		, #{emp_nm} 
+		, #{eml_addr}
+		, #{dept_no}
+		, #{mbl_telno}
+		, #{addr}
+		, 'N'
+	)
+
 </insert>
 
 </mapper>

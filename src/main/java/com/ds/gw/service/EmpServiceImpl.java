@@ -1,5 +1,7 @@
 package com.ds.gw.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ds.gw.dto.EmpDto;
@@ -15,7 +17,27 @@ public class EmpServiceImpl implements EmpService{
 	EmpDao dao;
 	
 	@Override
-	public void insertEmp(EmpDto dto) {
-		dao.insertEmp(dto);
+	public List<EmpDto> getList(EmpDto dto){
+		return dao.getList(dto);
+	}
+	
+	@Override
+	public EmpDto getView(EmpDto dto) {
+		return dao.getView(dto);
+	}
+
+	@Override
+	public void insert(EmpDto dto) {
+		dao.insert(dto);
+	}
+
+	@Override
+	public void update(EmpDto dto) {
+		dao.update(dto);
+	}
+
+	@Override
+	public void delete(EmpDto dto) {
+		dao.delete(dto);
 	}
 }

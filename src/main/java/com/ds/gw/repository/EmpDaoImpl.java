@@ -1,5 +1,7 @@
 package com.ds.gw.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,8 +13,31 @@ public class EmpDaoImpl implements EmpDao{
 	
 	@Autowired
 	SqlSessionTemplate sm;
-	
-	public void insertEmp(EmpDto dto) {
-		sm.insert("insertEmp", dto);
+
+	@Override
+	public List<EmpDto> getList(EmpDto dto) {
+		return sm.selectList("Emp_getList");
 	}
+
+	@Override
+	public EmpDto getView(EmpDto dto) {
+		return sm.selectOne("Emp_getView", dto);
+	}
+
+	@Override
+	public void insert(EmpDto dto) {
+		sm.insert("Emp_insert", dto);
+	}
+
+	@Override
+	public void update(EmpDto dto) {
+		sm.update("Emp_update", dto);
+	}
+
+	@Override
+	public void delete(EmpDto dto) {
+		sm.delete("Emp_delete", dto);
+	}
+	
+
 }
