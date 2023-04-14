@@ -17,8 +17,8 @@ public class EmpServiceImpl implements EmpService{
 	EmpDao dao;
 	
 	@Override
-	public List<EmpDto> getList(EmpDto dto){
-		return dao.getList(dto);
+	public List<EmpDto> getEmpList(EmpDto dto){
+		return dao.getEmpList(dto);
 	}
 	
 	@Override

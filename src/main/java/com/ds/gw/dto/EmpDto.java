@@ -14,3 +14,4 @@ public class EmpDto {
 	private String addr;
 	private String aprv_yn;
 }
+

@@ -7,7 +7,9 @@
 <!--  원래 클래스명은 패키지까지 포함하기때문에 너무 길어서 짧은 별명을 만들어서 접근하기 위해 기술한다  -->
 	<typeAliases>
     	<!--  <typeAlias alias="GuestbookDto" type="com.kosa.mycompany.guestbook.GuestbookDto"/> -->
-		<typeAlias alias="EmpDto" type="com.ds.gw.dto.EmpDto"/>
+		<typeAlias alias="empdto" type="com.ds.gw.dto.EmpDto"/>
+		<typeAlias alias="deptdto" type="com.ds.gw.dto.DeptDto"/>
+		<typeAlias alias="hobbydto" type="com.ds.gw.dto.HobbyDto"/>
 			
 	</typeAliases>
 

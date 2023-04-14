@@ -28,7 +28,7 @@
       <th>아이디</td>
       <td>
       		<div class="input-group">
-    			<input type="text" th:field="${emp_id}" class="form-control" name="emp_id" id="emp_id">
+    			<input type="text" th:value="${emp_id}" class="form-control" name="emp_id" id="emp_id">
   			</div>
       </td>
       </tr>
@@ -36,7 +36,7 @@
       <th>이름</td>
       <td>
       		<div class="input-group">
-    			<input type="text" th:field="${emp_nm}" class="form-control" name="emp_nm" id="emp_nm">
+    			<input type="text" th:value="${emp_nm}" class="form-control" name="emp_nm" id="emp_nm">
   			</div>
       </td>
       </tr>
@@ -46,22 +46,18 @@
       <th>이메일</td>
       <td>
       		<div class="input-group">
-    			<input type="email" th:field="${eml_addr}" class="form-control" name="eml_addr" id="eml_addr">
+    			<input type="email" th:value="${eml_addr}" class="form-control" name="eml_addr" id="eml_addr">
   			</div>
       </td>
       </tr>
       
-      <tr>
+           <tr>
       <th>부서</td>
       <td>
     		<div class="input-group">
-    			<select name="" id="dept_no">
+    			<select name="" id="dept_list">
     				<optgroup label="부서">
-    				<option value="1">부서1</option>
-    				<option value="2">부서2</option>
-    				<option value="3">부서3</option>
-    				<option value="4">부서4</option>
-    				<option value="5">부서5</option>
+    				<option th:each="dept:${list_d}" th:text="${dept.dept_nm}" th:value="${dept.dept_nm}"></option>
     				</optgroup>
     			</select>
   			</div>
@@ -72,7 +68,7 @@
       <th>전화번호</td>
       <td>
       		<div class="input-group">
-    			<input type="tel" th:field="${mbl_telno}" class="form-control" name="mbl_telno" id="mbl_telno">
+    			<input type="tel" th:text="${mbl_telno}" class="form-control" name="mbl_telno" id="mbl_telno">
   			</div>
       </td>
       </tr>
@@ -81,7 +77,7 @@
       <th>주소</td>
       <td>
       		<div class="input-group">
-    			<input type="text" th:field="${addr}" class="form-control" name="addr" id="addr">
+    			<input type="addr" th:text="${addr}" class="form-control" name="addr" id="addr">
   			</div>
       </td>
       </tr>
@@ -89,12 +85,9 @@
       <tr>
       <th>취미</td>
       <td>
-      		<div th:each="hobby : &{hobby_tb} class="input-group">
-    			<input type="checkbox"  th:field="${hobby.hobby_cd}" > 등산 &nbsp;
-    			<input type="checkbox"  name="hobby_cd" id="hobby_cd" value="2"> 게임 &nbsp;
-    			<input type="checkbox"  name="hobby_cd" id="hobby_cd" value="3"> 야구 &nbsp;
-    			<input type="checkbox"  name="hobby_cd" id="hobby_cd" value="4"> 클라이밍 &nbsp;
-    			<input type="checkbox"  name="hobby_cd" id="hobby_cd" value="5"> 자전거 &nbsp;
+      		<div th:each="hobby : ${list_h}" class="form-check form-check-inline">
+      			<input type="checkbox" th:field="*{list_h}" th:value="${hobby.hobby_cd}" class="form-check-input">
+      			<label th:for="${#ids.prev('list_h')}" th:text="${hobby.hobby_cd}" class="form-check-label">취미</label>
   			</div>
       </td>
       </tr>
@@ -105,8 +98,11 @@
   
 <div class="container" style="text-align:right">
 	<button type="button" class="btn btn-dark" 
-		th:href="@{/admin_list}" >승인 요청</button>
+		th:onclick>승인 요청</button>
 </div>
 </form>
 </body>
 </html>
+<script th:inline="javascript">
+
+</script>

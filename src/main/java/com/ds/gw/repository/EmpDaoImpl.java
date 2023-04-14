@@ -15,7 +15,7 @@ public class EmpDaoImpl implements EmpDao{
 	SqlSessionTemplate sm;
 
 	@Override
-	public List<EmpDto> getList(EmpDto dto) {
+	public List<EmpDto> getEmpList(EmpDto dto) {
 		return sm.selectList("Emp_getList");
 	}
 
