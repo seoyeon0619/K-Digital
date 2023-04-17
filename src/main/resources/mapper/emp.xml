@@ -9,17 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select emp_id, emp_nm, dept_no, aprv_yn from emp_mng_tb
 </select>
 
-<select id="Emp_getView" parameterType="EmpDto" resultType="EmpDto">
-	select * from emp_mng_tb 
-	where emp_id=#{emp_id}
-</select>
-
 <insert id="Emp_insert" parameterType="EmpDto">
-	insert into 
+	insert into emp_mng_tb
 	(
 		emp_id 
 		, emp_nm 
 		, eml_addr
+		, dept_no
+		, mbl_telno
+		, addr
 		, aprv_yn
 	)
 	values
@@ -27,17 +25,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{emp_id}
 		, #{emp_nm} 
 		, #{eml_addr}
+		, #{dept_no}
+		, #{mbl_telno}
+		, #{addr}
 		, 'N'
 	)
 </insert>
-
-<select id="Dept_getList" parameterType="DeptDto" resultType="DeptDto">
-	select * from dept_tb;
+ 
+<select id="Emp_getView"  parameterType="EmpDto" resultType="EmpDto">
+	select e.emp_id
+			, e.emp_nm
+			, e.eml_addr
+			, d.dept_nm
+			, e.addr
+			, e.mbl_telno
+	from emp_mng_tb e, dept_tb d
+	where d.dept_no = e.dept_no and emp_id = #{emp_id}
 </select>
 
-<select id="Hobby_getList" parameterType="HobbyDto" resultType="HobbyDto">
-	select * from hobby_tb;
-</select>
+<update id="Emp_update" parameterType="EmpDto">
+	update emp_mng_tb
+	set emp_nm = #{emp_nm}
+		, eml_addr = #{eml_addr}
+		, dept_no = #{dept_no}
+		, addr = #{addr}
+		, mbl_telno = #{mbl_telno}
+	where emp_id = #{emp_id}
+</update>
+
+<delete id="Emp_delete" parameterType="EmpDto">
+	delete from emp_mng_tb where emp_id = #{emp_id}
+</delete>
+
+
 
 
 

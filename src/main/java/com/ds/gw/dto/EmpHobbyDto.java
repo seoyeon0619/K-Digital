@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class HobbyDto {
+public class EmpHobbyDto {
+	private String emp_id;
 	private String hobby_cd;
-	private String hobby_cn;
 }

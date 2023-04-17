@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ds.gw.dto.EmpDto;
 import com.ds.gw.dto.HobbyDto;
 
 @Repository("hobbyDao")
@@ -17,7 +16,12 @@ public class HobbyDaoImpl implements HobbyDao{
 	
 	@Override
 	public List<HobbyDto> getHobbyList(HobbyDto dto_h){
+		
 		return sm.selectList("Hobby_getList");
 	}
+	
+	
+	
+
 	
 }

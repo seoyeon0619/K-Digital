@@ -20,4 +20,5 @@ public class HobbyServiceImpl implements HobbyService{
 		return dao.getHobbyList(dto_h);
 	}
 
+
 }

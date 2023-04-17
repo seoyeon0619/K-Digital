@@ -18,6 +18,11 @@ public class DeptDaoImpl implements DeptDao{
 	public List<DeptDto> getDeptList(DeptDto dto_d) {
 		return sm.selectList("Dept_getList");
 	}
+
+	@Override
+	public DeptDto getDeptView(DeptDto dto_d) {
+		return sm.selectOne("Dept_getView", dto_d);
+	}
 	
 
 }

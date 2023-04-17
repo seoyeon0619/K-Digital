@@ -9,7 +9,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
-
 <div class="container">
 	<h1> </h1>
 	<h3>관리자 승인요청 리스트</h3>
@@ -49,7 +48,7 @@
   </thead>
   <tbody>
   	<tr th:each="list : ${list}">
-  		<td th:text="${list.emp_id}" ></td>
+  		<td ><a th:text="${list.emp_id}" th:href="@{/admin_view(emp_id=${list.emp_id})}"></a></td>
   		<td th:text="${list.emp_nm}"></td>
   		<td th:text="${list.dept_no}"></td>
   		<td th:text="${list.aprv_yn}"></td>
@@ -57,89 +56,5 @@
 
   </tbody>
   </table>
-  
-    <table class="table">
-	  <colgroup>
-	  	<col width="30%">
-	  	<col width="*">
-	  </colgroup>
-
-    <tbody>
-    <tr>
-      <th>아이디</td>
-      <td>
-      		<div class="input-group">
-    			<input type="text" th:text="${emp_id}" class="form-control" name="emp_id" id="emp_id">
-  			</div>
-      </td>
-      </tr>
-    <tr>
-      <th>이름</td>
-      <td>
-      		<div class="input-group">
-    			<input type="text" th:text="${emp_nm}" class="form-control" name="emp_nm" id="emp_nm">
-  			</div>
-      </td>
-      </tr>
-    
-      <tr>
-      <th>이메일</td>
-      <td>
-      		<div class="input-group">
-    			<input type="email" th:text="${eml_addr}" class="form-control" name="eml_addr" id="eml_addr">
-  			</div>
-      </td>
-      </tr>
-      
-      <tr>
-      <th>부서</td>
-      <td>
-    		<div class="input-group">
-    			<select name="" id="dept_list">
-    				<optgroup label="부서">
-    				<option th:each="dept:${list_d}" th:text="${dept.dept_nm}" th:value="${dept.dept_nm}"></option>
-    				</optgroup>
-    			</select>
-  			</div>
-      </td>
-      </tr>
-      
-      <tr>
-      <th>전화번호</td>
-      <td>
-      		<div class="input-group">
-    			<input type="tel" th:text="${mbl_telno}" class="form-control" name="mbl_telno" id="mbl_telno">
-  			</div>
-      </td>
-      </tr>
-      
-      <tr>
-      <th>주소</td>
-      <td>
-      		<div class="input-group">
-    			<input type="addr" th:text="${addr}" class="form-control" name="addr" id="addr">
-  			</div>
-      </td>
-      </tr>
-      
-      <tr>
-      <th>취미</td>
-      <td>
-      		<div th:each="hobby : ${list_h}" class="form-check form-check-inline">
-      			<input type="checkbox" th:field="*{list_h}" th:value="${hobby.hobby_cd}" class="form-check-input">
-      			<label th:for="${#ids.prev('list_h')}" th:text="${hobby.hobby_cd}" class="form-check-label"></label>
-      				<span th:text="${hobby.hobby_cn}"></span>
-  			</div>
-      </td>
-      </tr>
-
-    </tbody>
-  </table>
-
-  
-<div class="container" style="text-align:right">
-	<button type="button" class="btn btn-dark">저장</button>
-	<button type="button" class="btn btn-dark" >삭제</button>
-</div>
 </body>
 </html>

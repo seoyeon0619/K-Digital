@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="emphobbydto">
+<select id="EmpHobby_getList" parameterType="EmpHobbyDto" resultType="EmpDto">
+	select emp_id, hobby_cd from emp_hobby_tb
+</select>
+
+<insert id="EmpHobby_insert" parameterType="EmpHobbyDto">
+	insert into emp_hobby_tb
+	(
+		emp_id, hobby_cd
+	)	
+	values
+	(
+		#{emp_id}, #{hobby_cd}
+	)
+	
+</insert>
+</mapper>
