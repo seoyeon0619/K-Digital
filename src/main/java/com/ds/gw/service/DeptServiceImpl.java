@@ -20,9 +20,5 @@ public class DeptServiceImpl implements DeptService{
 		return dao.getDeptList(dto_d);
 	}
 
-	@Override
-	public DeptDto getDeptView(DeptDto dto_d) {
-		return dao.getDeptView(dto_d);
-	}
 
 }

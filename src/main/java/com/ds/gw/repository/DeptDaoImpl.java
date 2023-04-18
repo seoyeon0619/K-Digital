@@ -19,10 +19,6 @@ public class DeptDaoImpl implements DeptDao{
 		return sm.selectList("Dept_getList");
 	}
 
-	@Override
-	public DeptDto getDeptView(DeptDto dto_d) {
-		return sm.selectOne("Dept_getView", dto_d);
-	}
 	
 
 }

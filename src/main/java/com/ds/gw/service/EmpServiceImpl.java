@@ -40,4 +40,5 @@ public class EmpServiceImpl implements EmpService{
 	public void delete(EmpDto dto) {
 		dao.delete(dto);
 	}
+
 }

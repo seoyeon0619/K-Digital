@@ -7,5 +7,4 @@ import com.ds.gw.dto.EmpHobbyDto;
 
 public interface DeptService {
 	List<DeptDto> getDeptList(DeptDto dto_d);
-	DeptDto getDeptView(DeptDto dto_d);
 }

@@ -33,14 +33,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </insert>
  
 <select id="Emp_getView"  parameterType="EmpDto" resultType="EmpDto">
-	select e.emp_id
-			, e.emp_nm
-			, e.eml_addr
-			, d.dept_nm
-			, e.addr
-			, e.mbl_telno
-	from emp_mng_tb e, dept_tb d
-	where d.dept_no = e.dept_no and emp_id = #{emp_id}
+	select emp_id
+			, emp_nm
+			, eml_addr
+			, dept_no
+			, addr
+			, mbl_telno
+	from emp_mng_tb 
+	where emp_id = #{emp_id}
+</select>
+
+<select id="Emp_getId" parameterType="EmpDto" resultType="EmpDto">
+	select emp_id from emp_mng_tb
 </select>
 
 <update id="Emp_update" parameterType="EmpDto">
@@ -48,8 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	set emp_nm = #{emp_nm}
 		, eml_addr = #{eml_addr}
 		, dept_no = #{dept_no}
-		, addr = #{addr}
 		, mbl_telno = #{mbl_telno}
+		, addr = #{addr}
+		, aprv_yn = 'Y'
 	where emp_id = #{emp_id}
 </update>
 

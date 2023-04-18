@@ -19,4 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	)
 	
 </insert>
+
+<update id="EmpHobby_update" parameterType="EmpHobbyDto">
+	update emp_hobby_tb
+	set emp_id = #{emp_id}, hobby_cd = #{hobby_cd}
+	where emp_id = #{emp_id} and hobby_cd='#{hobby_cd}'
+</update>
 </mapper>

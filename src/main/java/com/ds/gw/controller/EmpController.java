@@ -1,6 +1,8 @@
 package com.ds.gw.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8,9 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ds.gw.dto.DeptDto;
 import com.ds.gw.dto.EmpDto;
@@ -38,9 +38,10 @@ public class EmpController {
 	
 	// 사용자 포털로 이동
 	@RequestMapping(value = "/user")
-	public String user_portal(EmpDto dto, EmpHobbyDto dto_eh,Model model) {
+	public String user_portal(EmpDto dto, HobbyDto dto_h, EmpHobbyDto dto_eh,Model model) {
 		model.addAttribute("EmpDto", dto);
 		model.addAttribute("EmpHobbyDto", dto_eh);
+		
 		return "/user";
 	}
 	
@@ -48,11 +49,21 @@ public class EmpController {
 	@RequestMapping(value = "/user/save")
 	public String save(EmpDto dto, DeptDto dto_d, EmpHobbyDto dto_eh,  Model model) {
 		empService.insert(dto);
-		//emphobbyService.insert_eh(dto_eh);
-		//if문 써서 취미개수가 1개면 그냥 추가
-		//만약에 여러개면 Split 써서 나눠서 추가
+		if (dto_eh.getHobby_cd().contains(",") == true) { //******************************************************
+			String[] hobby_list = dto_eh.getHobby_cd().split(",");
+				for (int i = 0; i < hobby_list.length; i++) {
+					dto_eh.setHobby_cd(hobby_list[i]);
+					System.out.println(hobby_list[i]);
+				}
+				emphobbyService.insert_eh(dto_eh);
+			}
+		else {
+			emphobbyService.insert_eh(dto_eh);
+		}
 		return "redirect:/admin";
 	}
+	
+	
 	
 	// 관리자자 포털로 이동
 	@RequestMapping(value = "/admin")
@@ -88,32 +99,28 @@ public class EmpController {
 		return list_eh;
 	}
 
-	@RequestMapping(value = "/admin/view/{emp_id}")
-	public String getView(@PathVariable("emp_id") String emp_id, EmpDto dto, DeptDto dto_d, EmpHobbyDto dto_eh, Model model) {
+	@RequestMapping(value = "/admin/{emp_id}")
+	public String getView(@PathVariable("emp_id") String emp_id, EmpDto dto, EmpHobbyDto dto_eh, Model model) {
 		EmpDto resultDto = empService.getView(dto);
-		DeptDto resultDto_d = deptService.getDeptView(dto_d);
-		EmpHobbyDto resultDto_eh = emphobbyService.getEmpHobbyView(dto_eh);
-		
 		model.addAttribute("dto", resultDto);
-		model.addAttribute("dto_d", resultDto_d);
-		model.addAttribute("dto_eh", resultDto_eh);
-		return "admin_view/{emp_id}";
+//		model.addAttribute("dto_eh", resultDto_eh);
+		return "/admin_view";
 	}
 	
-	@PutMapping("/admin/update/{emp_id}")
-	public String update(@PathVariable("emp_id") String emp_id, EmpDto dto, DeptDto dto_d, EmpHobbyDto dto_eh) {
+	@RequestMapping("/admin/update/{emp_id}")
+	public String update(@PathVariable("emp_id") String emp_id, EmpDto dto, DeptDto dto_d, EmpHobbyDto dto_eh, Model model) {
 		empService.update(dto);
-		return "redirect:/admin/view/{emp_id}";
+		emphobbyService.update_eh(dto_eh);
+		return "redirect:/admin"; 
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/admin/delete")
-	public Map<String, String> delete(EmpDto dto)
+	@RequestMapping(value = "/admin/delete/{emp_id}")
+	public String delete(EmpDto dto)
 	{
 		Map<String, String> resultMap = new HashMap<String, String>();
 		empService.delete(dto);
 		resultMap.put("result", "success");
-		return resultMap;
+		return "redirect:/admin";
 	}
 	
 	

@@ -82,8 +82,17 @@
       </td>
       </tr>
       
-
+ 		<tr>
+	      <th>취미</td>
+	      <td>
+	      		<div th:each="hobby : ${list_h}" class="form-check">
+	      			<input type="checkbox" name="hobby_cd" th:field="${list_h}" th:value="${hobby.hobby_cd}" class="form-check-input" >
+	      			<label  th:text="${hobby.hobby_cn}" class="form-check-label"></label>
+	  			</div>
+	      </td>
+	     </tr>
       
+
     </tbody>
   </table>
 </div>

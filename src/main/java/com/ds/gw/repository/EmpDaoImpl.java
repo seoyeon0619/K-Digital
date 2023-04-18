@@ -38,6 +38,7 @@ public class EmpDaoImpl implements EmpDao{
 	public void delete(EmpDto dto) {
 		sm.delete("Emp_delete", dto);
 	}
+
 	
 
 }
