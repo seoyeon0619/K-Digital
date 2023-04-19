@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<form role="form" th:action="@{/user/save}" th:object="${EmpDto}" method="post">
+<form id="myform" th:action="@{/user/save}"  method="post">
 
 <div class="container">
 	<h1> </h1>
@@ -28,7 +28,7 @@
       <th>아이디</td>
       <td>
       		<div class="input-group">
-    			<input type="text" th:field="*{emp_id}" class="form-control" name="emp_id" id="emp_id">
+    			<input type="text" th:value="${EmpDto.emp_id}" class="form-control" name="emp_id" id="emp_id">
   			</div>
       </td>
       </tr>
@@ -36,7 +36,7 @@
       <th>이름</td>
       <td>
       		<div class="input-group">
-    			<input type="text" th:field="*{emp_nm}" class="form-control" name="emp_nm" id="emp_nm">
+    			<input type="text" th:value="${EmpDto.emp_nm}" class="form-control" name="emp_nm" id="emp_nm">
   			</div>
       </td>
       </tr>
@@ -46,7 +46,7 @@
       <th>이메일</td>
       <td>
       		<div class="input-group">
-    			<input type="email" th:field="*{eml_addr}" class="form-control" name="eml_addr" id="eml_addr">
+    			<input type="email" th:value="${EmpDto.eml_addr}" class="form-control" name="eml_addr" id="eml_addr">
   			</div>
       </td>
       </tr>
@@ -55,7 +55,7 @@
       <th>부서</td>
       <td>
     		<div class="input-group">
-    			<select name="" th:field="*{dept_no}" >
+    			<select name="dept_no" th:field="*{EmpDto.dept_no}" >
     				<optgroup label="부서">
     				<option th:each="dept:${list_d}" th:text="${dept.dept_nm}" th:value="${dept.dept_no}"></option>
     				</optgroup>
@@ -68,7 +68,7 @@
       <th>전화번호</td>
       <td>
       		<div class="input-group">
-    			<input type="tel" th:field="*{mbl_telno}" class="form-control" name="mbl_telno" id="mbl_telno">
+    			<input type="tel" th:value="${EmpDto.mbl_telno}" class="form-control" name="mbl_telno" id="mbl_telno">
   			</div>
       </td>
       </tr>
@@ -77,21 +77,22 @@
       <th>주소</td>
       <td>
       		<div class="input-group">
-    			<input type="addr" th:field="*{addr}" class="form-control" name="addr" id="addr">
+    			<input type="addr" th:value="${EmpDto.addr}" class="form-control" name="addr" id="addr">
   			</div>
       </td>
       </tr>
+      
       
  		<tr>
 	      <th>취미</td>
 	      <td>
 	      		<div th:each="hobby : ${list_h}" class="form-check">
-	      			<input type="checkbox" name="hobby_cd" th:field="${list_h}" th:value="${hobby.hobby_cd}" class="form-check-input" >
+	      			<input type="checkbox" name="hobby_cd" th:value="${hobby.hobby_cd}" class="form-check-input" >
 	      			<label  th:text="${hobby.hobby_cn}" class="form-check-label"></label>
 	  			</div>
 	      </td>
 	     </tr>
-      
+       
 
     </tbody>
   </table>

@@ -10,6 +10,7 @@
 </head> 
 <body>
 <form role="form" th:action="@{/admin/update/{emp_id}(emp_id = ${dto.emp_id})}"  method="post">
+<input type="hidden" name="keyword" value='<c:out value="${dto.searchKeyword}"/>'>
 <div class="container" >
 	<h1> </h1>
 	<h3>관리자 상세보기</h3>
@@ -26,8 +27,8 @@
 	    	<th>이름 검색</td>
 	    	<td>
 		    <div class="input-group-text">
-				<input type="text" class="form-control">
-		    	<button class="btn text-white" type="button" style="background-color:skyblue">검색</button>
+				<input type="text"  name="searchKeyword" id="searchKeyword" th:value="${searchKeyword}" class="form-control">
+		    	<button class="btn btn-dark" type="button" th:onclick="|location.href='@{/admin}'|">검색</button>
 		    </div>
 	    	</td>
 	    	</tr>
@@ -56,7 +57,10 @@
 	  		<td ><a th:text="${list.emp_id}" th:href="@{/admin/{emp_id}(emp_id=${list.emp_id})}"></a></td>
 	  		<td th:text="${list.emp_nm}"></td>
 	  		<td th:text="${list.dept_no}"></td>
-	  		<td th:text="${list.aprv_yn}"></td>
+	  		<td>
+	  		<span th:if="${list.aprv_yn == 'N'}">승인요청</span>
+	  		<span th:unless="${list.aprv_yn == 'N'}">승인</span>
+	  		</td>
 	  	</tr>
 	
 	  </tbody>
@@ -131,15 +135,17 @@
 	      </td>
 	      </tr>
 	      
-		<tr>
+	      <tr>
 	      <th>취미</td>
 	      <td>
 	      		<div th:each="hobby : ${list_h}" class="form-check">
-	      			<input type="checkbox" th:field="${list_h}" th:value="${hobby.hobby_cd}" class="form-check-input">
+	      			<input type="checkbox" name="hobby_cd"  th:value="${hobby.hobby_cd}" class="form-check-input" 
+	      					th:checked="${#strings.contains(emp_hobby_list, hobby.hobby_cd)}"
+	      					disabled="disabled">
 	      			<label  th:text="${hobby.hobby_cn}" class="form-check-label"></label>
 	  			</div>
 	      </td>
-	      </tr>
+	     </tr>
 		 
 	      <tr>
 	      <th></td>

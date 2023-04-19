@@ -21,7 +21,7 @@ public class EmpHobbyServiceImpl implements EmpHobbyService{
 	}
 	
 	@Override
-	public EmpHobbyDto getEmpHobbyView(EmpHobbyDto dto_eh) {
+	public List<EmpHobbyDto> getEmpHobbyView(EmpHobbyDto dto_eh) {
 		return dao.getEmpHobbyView(dto_eh);
 	}
 	

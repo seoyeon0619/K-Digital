@@ -20,6 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 </insert>
 
+<select id="EmpHobby_getView" parameterType="EmpHobbyDto" resultType="EmpHobbyDto">
+	select emp_id, hobby_cd from emp_hobby_tb where emp_id=#{emp_id}
+</select>
+
 <update id="EmpHobby_update" parameterType="EmpHobbyDto">
 	update emp_hobby_tb
 	set emp_id = #{emp_id}, hobby_cd = #{hobby_cd}

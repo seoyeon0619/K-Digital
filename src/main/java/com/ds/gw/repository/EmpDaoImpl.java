@@ -16,7 +16,7 @@ public class EmpDaoImpl implements EmpDao{
 
 	@Override
 	public List<EmpDto> getEmpList(EmpDto dto) {
-		return sm.selectList("Emp_getList");
+		return sm.selectList("Emp_getList",dto);
 	}
 
 	@Override

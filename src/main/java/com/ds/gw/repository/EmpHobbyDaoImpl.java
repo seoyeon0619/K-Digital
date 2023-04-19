@@ -20,8 +20,8 @@ public class EmpHobbyDaoImpl implements EmpHobbyDao{
 	}
 	
 	@Override
-	public EmpHobbyDto getEmpHobbyView(EmpHobbyDto dto_eh) {
-		return sm.selectOne("EmpHobby_getView", dto_eh);
+	public List<EmpHobbyDto> getEmpHobbyView(EmpHobbyDto dto_eh) {
+		return sm.selectList("EmpHobby_getView", dto_eh);
 	}
 	
 	@Override

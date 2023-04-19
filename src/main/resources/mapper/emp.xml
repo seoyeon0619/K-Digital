@@ -7,6 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="Emp_getList" parameterType="EmpDto" resultType="EmpDto">
 	select emp_id, emp_nm, dept_no, aprv_yn from emp_mng_tb
+	where emp_nm like '%' || #{searchKeyword} || '%'
+	order by aprv_yn='Y'
 </select>
 
 <insert id="Emp_insert" parameterType="EmpDto">
@@ -55,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, mbl_telno = #{mbl_telno}
 		, addr = #{addr}
 		, aprv_yn = 'Y'
-	where emp_id = #{emp_id}
+	where emp_id = #{emp_id} 
 </update>
 
 <delete id="Emp_delete" parameterType="EmpDto">

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EmpDto {
+public class EmpDto extends BaseDto{
 	private String emp_id;
 	private String emp_nm;
 	private String eml_addr;
