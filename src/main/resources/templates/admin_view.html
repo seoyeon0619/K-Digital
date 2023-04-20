@@ -9,7 +9,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head> 
 <body>
-<form role="form" th:action="@{/admin}" method="post">
 
 <div class="container" >
 	<h1> </h1>
@@ -27,11 +26,13 @@
 	    	<th>이름 검색</td>
 	    	<td>
 		    <div class="input-group-text">
-				<input type="text"  name="searchKeyword" id="searchKeyword" th:value="${searchKeyword}" class="form-control">
-		    	<button class="btn btn-dark" type="submit" >검색</button>
+				<input type="text"  name="searchKeyword" id="searchKeyword" 
+				th:value="${searchKeyword}" 
+				th:action="@{/admin}"  class="form-control">
+		    	<button class="btn btn-dark" type="button" >검색</button>
 	    	</td>
 	    	</tr>
-		    </div>
+ </div>
  	
 <!---------------------------- 승인요청 리스트------------------------------>
   <table align="left" style="width:100%">
@@ -69,7 +70,6 @@
 	
 	<td width="10%">
 	</td>
-</form> 
 <!------------------------------------------ view-------------------------------------->
 <form role="form" th:action="@{/admin/update/{emp_id}(emp_id = ${dto.emp_id})}"  method="post">
 	<td valign="top">

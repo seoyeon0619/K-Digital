@@ -62,13 +62,12 @@ public class EmpController {
 	// 관리자 포털로 이동
 	@RequestMapping(value = "/admin")
 	public String admin_portal(EmpDto dto, Model model) {
-		List<EmpDto> list = empService.getEmpList(dto);
-		EmpDto empdto = new EmpDto();
-		model.addAttribute("dto", empdto);
-		model.addAttribute("list", list);
 		model.addAttribute("searchKeyword", dto.getSearchKeyword());
 		
-		return "/admin_view";
+		List<EmpDto> list = empService.getEmpList(dto);
+		model.addAttribute("list", list);
+		
+		return "/admin_list";
 	}
 	
 //	// 사용자 리스트 가져오기
@@ -96,6 +95,8 @@ public class EmpController {
 	
 	@RequestMapping(value = "/admin/{emp_id}")
 	public String getView(@PathVariable("emp_id") String emp_id, EmpDto dto, HobbyDto dto_h, EmpHobbyDto dto_eh, Model model) {
+		model.addAttribute("searchKeyword", dto.getSearchKeyword());
+		
 		EmpDto resultDto = empService.getView(dto);
 		model.addAttribute("dto", resultDto);
 		
@@ -112,8 +113,7 @@ public class EmpController {
 		}
 		model.addAttribute("emp_hobby_list", emp_hobby_list);
 		System.out.println(dto.getSearchKeyword());
-		model.addAttribute("searchKeyword", dto.getSearchKeyword());
-		return "/admin_list";
+		return "/admin_view";
 	}
 	
 	@RequestMapping("/admin/update/{emp_id}")
