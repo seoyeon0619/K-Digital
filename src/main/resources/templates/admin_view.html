@@ -9,8 +9,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head> 
 <body>
-<form role="form" th:action="@{/admin/update/{emp_id}(emp_id = ${dto.emp_id})}"  method="post">
-<input type="hidden" name="keyword" value='<c:out value="${dto.searchKeyword}"/>'>
+<form role="form" th:action="@{/admin}" method="post">
+
 <div class="container" >
 	<h1> </h1>
 	<h3>관리자 상세보기</h3>
@@ -28,11 +28,11 @@
 	    	<td>
 		    <div class="input-group-text">
 				<input type="text"  name="searchKeyword" id="searchKeyword" th:value="${searchKeyword}" class="form-control">
-		    	<button class="btn btn-dark" type="button" th:onclick="|location.href='@{/admin}'|">검색</button>
-		    </div>
+		    	<button class="btn btn-dark" type="submit" >검색</button>
 	    	</td>
 	    	</tr>
- </div>   	
+		    </div>
+ 	
 <!---------------------------- 승인요청 리스트------------------------------>
   <table align="left" style="width:100%">
   <tr>
@@ -69,7 +69,9 @@
 	
 	<td width="10%">
 	</td>
+</form> 
 <!------------------------------------------ view-------------------------------------->
+<form role="form" th:action="@{/admin/update/{emp_id}(emp_id = ${dto.emp_id})}"  method="post">
 	<td valign="top">
 	  <table class="table" >
 		  <colgroup>
@@ -140,8 +142,7 @@
 	      <td>
 	      		<div th:each="hobby : ${list_h}" class="form-check">
 	      			<input type="checkbox" name="hobby_cd"  th:value="${hobby.hobby_cd}" class="form-check-input" 
-	      					th:checked="${#strings.contains(emp_hobby_list, hobby.hobby_cd)}"
-	      					disabled="disabled">
+	      					th:checked="${#strings.contains(emp_hobby_list, hobby.hobby_cd)}">
 	      			<label  th:text="${hobby.hobby_cn}" class="form-check-label"></label>
 	  			</div>
 	      </td>
@@ -163,9 +164,9 @@
   </td>
   </tr>
   </table>
+</form>
 <!-- ------------------------------------------------------------------------- -->
   
 </div>
-</form>
 </body>
 </html>

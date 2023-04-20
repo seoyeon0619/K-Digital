@@ -9,8 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head> 
 <body>
-<form role="form" id="myform" th:action="@{/admin}" method="post">
-<input type="hidden" name="keyword" value='<c:out value="${searchKeyword.searchKeyword}"/>'>
+<form role="form"  th:action="@{/admin}" method="post">
 
 <div class="container" >
 	<h1> </h1>
@@ -33,7 +32,8 @@
 		    </div>
 	    	</td>
 	    	</tr>
- </div>   	
+ </div>   
+ </form>	
 <!---------------------------- 승인요청 리스트------------------------------>
   <table align="left" style="width:100%">
   <tr>
@@ -70,7 +70,8 @@
 	<td width="10%">
 	</td>
 <!------------------------------------------ view-------------------------------------->
-<td valign="top">
+<form role="form" th:action="@{/admin/update/{emp_id}(emp_id = ${dto.emp_id})}"  th:object="${dto}" th:if="${dto}!=null" method="post">
+	<td valign="top">
 	  <table class="table" >
 		  <colgroup>
 		  	<col width="30%">
@@ -82,7 +83,7 @@
 	      <th>아이디</td>
 	      <td>
 	      		<div class="input-group">
-	    			<input type="text"  class="form-control"  disabled="disabled">
+	    			<input type="text" name="emp_id" th:value="${dto.emp_id}" class="form-control"  readonly>
 	  			</div>
 	      </td>
 	      </tr>
@@ -90,7 +91,7 @@
 	      <th>사원명</td>
 	      <td>
 	      		<div class="input-group">
-	    			<input type="text"  class="form-control" disabled="disabled">
+	    			<input type="text" name="emp_nm" th:value="${dto.emp_nm}" class="form-control" >
 	  			</div>
 	      </td>
 	      </tr>
@@ -99,7 +100,7 @@
 	      <th>이메일</td>
 	      <td>
 	      		<div class="input-group">
-	    			<input type="email"  class="form-control" disabled="disabled">
+	    			<input type="email" name="eml_addr" th:value="${dto.eml_addr}" class="form-control" >
 	  			</div>
 	      </td>
 	      </tr>
@@ -108,9 +109,9 @@
 	      <th>부서</td>
 	      <td>
 	    		<div class="input-group">
-	    			<select name="" disabled="disabled">
-	    				<optgroup label="부서" >
-	    				<option ></option>
+	    			<select name="dept_no" th:field="${dto.dept_no}">
+	    				<optgroup label="부서">
+	    				<option th:each="dept:${list_d}" th:text="${dept.dept_nm}" th:value="${dept.dept_no}"></option>
 	    				</optgroup>
 	    			</select>
 	  			</div>
@@ -121,7 +122,7 @@
 	      <th>전화번호</td>
 	      <td>
 	      		<div class="input-group">
-	    			<input type="tel"  class="form-control" disabled="disabled">
+	    			<input type="tel" name="mbl_telno" th:value="${dto.mbl_telno}" class="form-control" >
 	  			</div>
 	      </td>
 	      </tr>
@@ -130,22 +131,32 @@
 	      <th>주소</td>
 	      <td>
 	      		<div class="input-group">
-	    			<input type="text"  class="form-control" disabled="disabled">
+	    			<input type="text" name="addr" th:value="${dto.addr}" class="form-control" >
 	  			</div>
 	      </td>
 	      </tr>
 	      
-	   <tr>
+	      <tr>
 	      <th>취미</td>
 	      <td>
 	      		<div th:each="hobby : ${list_h}" class="form-check">
-	      			<input type="checkbox" th:field="${list_h}" th:value="${hobby.hobby_cd}" class="form-check-input" disabled="disabled">
+	      			<input type="checkbox" name="hobby_cd"  th:value="${hobby.hobby_cd}" class="form-check-input" 
+	      					th:checked="${#strings.contains(emp_hobby_list, hobby.hobby_cd)}">
 	      			<label  th:text="${hobby.hobby_cn}" class="form-check-label"></label>
 	  			</div>
 	      </td>
+	     </tr>
+		 
+	      <tr>
+	      <th></td>
+	      <td>
+				<div class="container" style="text-align:right">
+					<button type="submit" class="btn btn-dark" >저장</button>
+					<button type="button" class="btn btn-dark" 
+					th:onclick="|location.href='@{/admin/delete/{emp_id}(emp_id=${dto.emp_id})}'|">삭제</button>
+	  			</div>
+	      </td>
 	      </tr>
-		 
-		 
 		 
 	    </tbody>
 	  </table>
@@ -153,5 +164,7 @@
   </tr>
   </table>
 </form>
+  
+</div>
 </body>
 </html>

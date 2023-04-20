@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.ds.gw.dto.BaseDto;
 import com.ds.gw.dto.EmpDto;
 import com.ds.gw.repository.EmpDao;
 
