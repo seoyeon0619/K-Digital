@@ -2,12 +2,12 @@ package com.ds.gw.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.ds.gw.dto.HobbyDto;
 import com.ds.gw.repository.HobbyDao;
-
-import jakarta.annotation.Resource;
 
 @Service("hobbyService")
 public class HobbyServiceImpl implements HobbyService{

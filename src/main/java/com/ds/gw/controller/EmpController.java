@@ -2,13 +2,14 @@ package com.ds.gw.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ds.gw.dto.BaseDto;
 import com.ds.gw.dto.DeptDto;
 import com.ds.gw.dto.EmpDto;
 import com.ds.gw.dto.EmpHobbyDto;
@@ -17,8 +18,6 @@ import com.ds.gw.service.DeptService;
 import com.ds.gw.service.EmpHobbyService;
 import com.ds.gw.service.EmpService;
 import com.ds.gw.service.HobbyService;
-
-import jakarta.annotation.Resource;
 
 @Controller
 public class EmpController {

@@ -2,12 +2,12 @@ package com.ds.gw.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.ds.gw.dto.EmpHobbyDto;
 import com.ds.gw.repository.EmpHobbyDao;
-
-import jakarta.annotation.Resource;
 
 @Service("emphobbyService")
 public class EmpHobbyServiceImpl implements EmpHobbyService{
